@@ -7,23 +7,21 @@ To write a program to predict the type of species of the Iris flower using the S
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1.Import Necessary Libraries and Load Data
-
-2.Split Dataset into Training and Testing Sets
-
-3.Train the Model Using Stochastic Gradient Descent (SGD)
-
-4.Make Predictions and Evaluate Accuracy
-
-5.Generate Confusion Matrix
+```
+1.Initialize Parameters: Set initial weights (theta) to zero.
+2.Compute Predictions: Calculate predictions using the sigmoid function on the weighted inputs.
+3.Calculate Cost: Compute the cost using the cross-entropy loss function.
+4.Update Weights: Adjust weights by subtracting the gradient of the cost with respect to each weight.
+5.Repeat: Repeat steps 2–4 for a set number of iterations or until convergence is achieved.
+```
 
 ## Program:
+```
 Program to implement the prediction of iris species using SGD Classifier.
-
-Developed by: ABINAYA.A 
-
-RegisterNumber:212224230004  
-```python
+Developed by: Dharshan V
+RegisterNumber:  212224240035
+```
+```
 import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.linear_model import SGDClassifier
@@ -31,50 +29,40 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
-
 # Load the Iris dataset
 iris = load_iris()
-
 # Create a Pandas DataFrame
 df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
 df['target'] = iris.target
-
 # Display the first few rows of the dataset
 print(df.head())
-
 # Split the data into features (X) and target (y)
 X = df.drop('target', axis=1)
 y = df['target']
-
 # Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+random_state=42)
 # Create an SGD classifier with default parameters
 sgd_clf = SGDClassifier(max_iter=1000, tol=1e-3)
-
 # Train the classifier on the training data
 sgd_clf.fit(X_train, y_train)
-
 # Make predictions on the testing data
 y_pred = sgd_clf.predict(X_test)
-
 # Evaluate the classifier's accuracy
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.3f}")
-
 # Calculate the confusion matrix
 cm = confusion_matrix(y_test, y_pred)
 print("Confusion Matrix:")
 print(cm)
+
 ```
+
 ## Output:
-![Image-1](https://github.com/user-attachments/assets/61225720-a431-4c85-9a8f-44d3f9a962b7)
+![image](https://github.com/user-attachments/assets/5da5e9a8-cda8-484e-a523-f1acb20473f1)
 
-![Image-2](https://github.com/user-attachments/assets/d2910e06-2f10-4e64-af1b-ba1c46aab75f)
 
-![Image-3](https://github.com/user-attachments/assets/50b2fa49-621c-4735-a23d-a9eac41584e8)
 
-![Image-4](https://github.com/user-attachments/assets/8342fa51-c6c1-4161-a89e-f88682675bc1)
 
 ## Result:
 Thus, the program to implement the prediction of the Iris species using SGD Classifier is written and verified using Python programming.
